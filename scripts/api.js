@@ -1,15 +1,23 @@
-export class Github{
-    constructor(){
-        this.client_id = "Ov23liEujvlCgo4R6eqR";
-        this.client_secret = "32e9e8f06266b33c8b4facfc7e9f4ff1fcd16e14";
-        this.per_page = 10;
-    }
-    //API den kullanıcı bilgilerini alma
-    async fetchUserData(username){
-      const profileRes = await fetch(`https://api.github.com/users/${username}?client_id=${this.client_id}&client_secret=${this.client_secret}?per_page=${this.per_page}`);
+export class Github {
+  constructor() {
+    this.client_id = "ac6586af7bc0155ab2b6";
+    this.client_secret = "2602029d67d0ef51afe43ce634ed3a8f10e50226";
+    this.per_page = 10;
+    this.sort = "asc";
+  }
+  //* api'den kullanıcı bilgilerini alma
+  async fetchUserData(username) {
     
-      const data = await profileRes.json();
-      console.log(data)
-      return data;
-    }
+    const profileRes = await fetch(
+      `https://api.github.com/users/${username}?client_id=${this.client_id}&client_secret=${this.client_secret}`
+    );
+   
+    const repoRes = await fetch(
+      `https://api.github.com/users/${username}/repos?cliend_id=${this.client_id}&client_secret=${this.client_secret}&per_page=${this.per_page}&sort=${this.sort}`
+    );
+    const data = await profileRes.json();
+    const repos = await repoRes.json();
+    
+    return { data, repos };
+  }
 }
