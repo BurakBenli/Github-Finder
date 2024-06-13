@@ -14,17 +14,17 @@ const getInput = (e) => {
     ui.showAlert("Form alanını doldurunuz.", "alert alert-warning");
     return;
   }
+  
   if (value) {
     github
-      .fetchUserData(value)
-      .then((res) => {
+      .fetchUserData(value).then((res) => {
+        console.log("rs messa"+ value.message)
         // eğer kullanıcı bulunamadıysa
         if (res.message === "Not Found") {
-          ui.showAlert(
-            "Aradığınız kullanıcı bulunamadı.",
-            "alert alert-danger"
-          );
-        } else {
+          ui.showAlert("Aradığınız kullanıcı bulunamadı.","alert alert-danger");
+          console.log("Kullanıcıyı bulamadık")
+        } else{
+          console.log("Kullanıcıyı buldukkkk")
           // kullanıcı bulunduysa
           ui.showAlert("Kullanıcı bulundu.", "alert alert-success");
           ui.renderProfile(res.data);
