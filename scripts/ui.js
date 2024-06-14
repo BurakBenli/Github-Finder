@@ -87,7 +87,7 @@ export class UI {
 
     elements.title.classList.toggle("text-dark");
   }
-  renderProjects(data) {
+  renderRepos(data) {
     // projelere dizisindeki her bir eleman için kart oluştur ve ekrana bas
     // data.forEach((repo) => {
     //   this.repoArea.innerHTML += `
